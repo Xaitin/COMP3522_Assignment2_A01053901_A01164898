@@ -1,14 +1,14 @@
 from candy import Candy
 
 
-class Toffee(Candy):
-    def __init__(self, nuts, lactose, name, description, p_id, variety):
+class Canes(Candy):
+    def __init__(self, nuts, lactose, name, description, p_id, stripes):
         self._has_nuts = nuts
         self._lactose_free = lactose
         self._name = name
         self._description = description
         self._product_id = p_id
-        self._variety = variety
+        self._stripes = stripes
 
     @property
     def has_nuts(self):

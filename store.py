@@ -48,7 +48,7 @@ class Store:
         correct_file = False
         try:
             file_name = input("Please enter the name of the excel file to process (without extension)")
-            self._order_list = self._order_processor.process_order(file_name + ".xlsx")
+            self._order_list = self._order_processor.read_order_file(file_name + ".xlsx")
             correct_file = True
         except FileNotFoundError:
             print("File name not found")
@@ -77,6 +77,9 @@ class Store:
                 output += item_id + " is Low in Stock\n"
             elif qty > Stock.IN_STOCK.value:
                 output += item_id + " is in Stock\n"
-        print(output)
+        if output == "":
+            print("Inventory is empty")
+        else:
+            print(output)
 
 
