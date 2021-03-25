@@ -1,3 +1,10 @@
-import store
+from store import Store as S
+
+
 def main():
-    store myStore = new store()
+    my_store = S()
+    my_store.display_menu()
+
+
+if __name__ == '__main__':
+    main()
