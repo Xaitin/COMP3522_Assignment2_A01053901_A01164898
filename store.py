@@ -58,12 +58,12 @@ class Store:
         list_of_ids = list()
         list_of_counters = list()
         for item in self._inventory:
-            id = item.getId()
-            if id not in list_of_ids:
-                list_of_ids.append(id)
+            p_id = item.product_id()
+            if p_id not in list_of_ids:
+                list_of_ids.append(p_id)
                 list_of_counters.append(1)
             else:
-                index_to_increment = list_of_ids.index(id)
+                index_to_increment = list_of_ids.index(p_id)
                 list_of_counters[index_to_increment] += 1
         output = ""
         for i in range(len(list_of_ids)):
