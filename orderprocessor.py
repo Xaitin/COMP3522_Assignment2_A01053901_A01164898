@@ -1,8 +1,8 @@
 import pandas as pd
 from order import Order
-from xmasfactory import xmasFactory
-from easterfactory import easterFactory
-from spookyfactory import spookyFactory
+from xmasproductfactory import xmasProductFactory
+from easterproductfactory import EasterProductFactory
+from spookyproductfactory import SpookyProductFactory
 
 
 class OrderProcessor:
@@ -17,7 +17,12 @@ class OrderProcessor:
         print('Excel Sheet to Dict:', orders.to_dict(orient='records'))
         orders = orders.to_dict(orient='records')
         for order in orders:
-            factory = factoryBuilder()
+            if order['holiday'] == 'Christmas':
+                factory = XmasProductFactory
+            elif order['holiday'] == 'Easter':
+                factory = EasterProductFactory
+            else:
+                factory = SpookyProductFactory
 
             details = order.drop(['holiday'], ['order_number'], ['product_id'], ['item'], ['name'])
             new_order = Order(order['order_number'], order['product_id'], order['item'],
