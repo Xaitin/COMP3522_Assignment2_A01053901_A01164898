@@ -14,7 +14,7 @@ class OrderProcessor:
 
     def read_order_file(self, file_name):
         orders = pd.read_excel(file_name)
-        #print('Excel Sheet to Dict:', orders.to_dict(orient='records'))
+        # print('Excel Sheet to Dict:', orders.to_dict(orient='records'))
         details = orders.drop(['holiday'], ['order_number'], ['product_id'], ['item'], ['name'])
         details = details.to_dict(orient='records')
         orders = orders.to_dict(orient='records')
