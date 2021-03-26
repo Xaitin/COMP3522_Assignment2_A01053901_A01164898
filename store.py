@@ -65,7 +65,7 @@ class Store:
                     id_to_check = item.product_id()
                     if product_id == id_to_check:
                         num_in_stock += 1
-                qty_to_order = order.get_quantity()
+                qty_to_order = int(order.get_quantity())
                 if qty_to_order > num_in_stock:
                     try:
                         for i in range(100):
