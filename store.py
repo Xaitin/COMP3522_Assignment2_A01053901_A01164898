@@ -1,5 +1,6 @@
 from orderprocessor import OrderProcessor
 from enum import Enum
+from datetime import datetime
 
 
 class Stock(Enum):
@@ -39,7 +40,7 @@ class Store:
             elif user_input == 2:
                 self.check_inventory()
             elif user_input == 3:
-                pass
+                self.print_transactions_to_file()
             else:
                 print("Incorrect input. Displaying menu.")
 
@@ -103,3 +104,12 @@ class Store:
             print("Inventory is empty")
         else:
             print(output)
+
+    def print_transactions_to_file(self):
+        timestamp = datetime.today().strftime('%d%m%y_%H%M')
+        filename = 'DTR_' + timestamp
+        file = open(filename, 'w')
+        file.write('CLOUD9 SUPERSTORE - DAILY TRANSACTION REPORT')
+        file.write(datetime.today().strftime('%d-%m-%Y %H%M'))
+        file.writelines('%s\n' % transaction for transaction in self._transaction_list)
+        file.close()
