@@ -3,6 +3,7 @@ from skeleton import Skeleton
 from spider import Spider
 from toffee import Toffee
 
+
 class SpookyProductFactory(ProductFactory):
 
     def create_candy(self, item):
