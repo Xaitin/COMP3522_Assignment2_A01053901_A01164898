@@ -67,17 +67,29 @@ class Store:
                         num_in_stock += 1
                 qty_to_order = order.get_quantity()
                 if qty_to_order > num_in_stock:
-                    for i in range(100):
+                    try:
+                        for i in range(100):
+                            if item_type == "Toy":
+                                self.add_to_inventory(factory.create_toy(order))
+                            elif item_type == "Candy":
+                                self.add_to_inventory(factory.create_candy(order))
+                            else:
+                                self.add_to_inventory(factory.create_stuffed_animal(order))
+                    except InvalidDataError as e:
+                        print(e)
+                try:
+                    for i in range(qty_to_order):
                         if item_type == "Toy":
-                            self.add_to_inventory(factory.create_toy(order))
+                            self.remove_from_inventory(factory.create_toy(order))
                         elif item_type == "Candy":
-                            self.add_to_inventory(factory.create_candy(order))
+                            self.remove_from_inventory(factory.create_candy(order))
                         else:
-                            self.add_to_inventory(factory.create_stuffed_animal(order))
+                            self.remove_from_inventory(factory.create_stuffed_animal(order))
+                except InvalidDataError as e:
+                    print(e)
+
         except FileNotFoundError:
             print("File name not found")
-        except InvalidDataError as e:
-            print(e)
         return correct_file
 
     def check_inventory(self):
@@ -116,3 +128,6 @@ class Store:
         file.write(datetime.today().strftime('%d-%m-%Y %H%M'))
         file.writelines('%s\n' % transaction for transaction in self._transaction_list)
         file.close()
+
+    def remove_from_inventory(self, param):
+        self._inventory.remove(param)
