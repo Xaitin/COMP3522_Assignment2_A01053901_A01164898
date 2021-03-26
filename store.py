@@ -76,7 +76,7 @@ class Store:
                             else:
                                 self.add_to_inventory(factory.create_stuffed_animal(order))
                     except InvalidDataError as e:
-                        print(e)
+                        self._transaction_list.append(order.get_order_number() + e.message)
                 try:
                     for i in range(qty_to_order):
                         if item_type == "Toy":
@@ -86,7 +86,7 @@ class Store:
                         else:
                             self.remove_from_inventory(factory.create_stuffed_animal(order))
                 except InvalidDataError as e:
-                    print(e)
+                    self._transaction_list.append(order.get_order_number() + e.message)
 
         except FileNotFoundError:
             print("File name not found")
