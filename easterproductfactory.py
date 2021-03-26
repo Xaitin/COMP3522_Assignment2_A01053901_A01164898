@@ -1,7 +1,7 @@
 from productfactory import ProductFactory
 from toffee import Toffee
-from eBunny import eBunny
-from rbunny import rBunny
+from eBunny import EBunny
+from rbunny import RBunny
 
 
 class EasterProductFactory(ProductFactory):
@@ -29,7 +29,7 @@ class EasterProductFactory(ProductFactory):
         num_effects = other_info['num_sound']
         min_age = other_info['min_age']
         has_batteries = other_info['has_batteries']
-        return rBunny(has_batteries, min_age, name, description, product_id, num_effects, color)
+        return RBunny(has_batteries, min_age, name, description, product_id, num_effects, color)
 
     def create_stuffed_animal(self, item):
         # creating Easter Bunnies for easter
@@ -41,4 +41,4 @@ class EasterProductFactory(ProductFactory):
         size = other_info['size']
         stuffing = other_info['stuffing']
         color = other_info['colour']
-        return eBunny(stuffing, size, fabric, name, description, product_id, color)
+        return EBunny(stuffing, size, fabric, name, description, product_id, color)
