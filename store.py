@@ -86,7 +86,7 @@ class Store:
                                 animal = factory.create_stuffed_animal(order)
                                 self.remove_from_inventory(animal)
                     except InvalidDataError as e:
-                        self._transaction_list.append(str(order.get_order_number()) + e.message)
+                        self._transaction_list.append("Order #" + str(order.get_order_number()) + ', ' + e.message)
                 else:
                     try:
                         for i in range(qty_to_order):
@@ -100,10 +100,10 @@ class Store:
                                 animal = factory.create_stuffed_animal(order)
                                 self.remove_from_inventory(animal)
                     except InvalidDataError as e:
-                        self._transaction_list.append(str(order.get_order_number()) + e.message)
+                        self._transaction_list.append("Order #" + str(order.get_order_number()) + ', ' + e.message)
                 name = order.get_name()
                 order_num = order.get_order_number()
-                self._transaction_list.append("{0}, Item {1}, Product ID {2}, Name {3}, Quantity {4}".format(
+                self._transaction_list.append("Order #{0}, Item: {1}, Product ID: {2}, Name: {3}, Quantity: {4}".format(
                     order_num, item_type, product_id, name, qty_to_order
                 ))
 
@@ -140,12 +140,13 @@ class Store:
 
     def print_transactions_to_file(self):
         timestamp = datetime.today().strftime('%d%m%y_%H%M')
-        filename = 'DTR_' + timestamp
+        filename = 'DTR_' + timestamp + '.txt'
         file = open(filename, 'w')
-        file.write('CLOUD9 SUPERSTORE - DAILY TRANSACTION REPORT')
-        file.write(datetime.today().strftime('%d-%m-%Y %H%M'))
-        file.writelines('%s\n' % transaction for transaction in self._transaction_list)
+        file.write('CLOUD9 SUPERSTORE - DAILY TRANSACTION REPORT\n')
+        file.write(datetime.today().strftime('%d-%m-%Y %H:%M\n'))
+        file.writelines('\n%s' % transaction for transaction in self._transaction_list)
         file.close()
+        print(self._transaction_list)
 
     def remove_from_inventory(self, param):
         self._inventory.remove(param.product_id)
