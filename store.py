@@ -75,6 +75,8 @@ class Store:
                             self.add_to_inventory(factory.create_stuffed_animal(order))
         except FileNotFoundError:
             print("File name not found")
+        except AttributeError:
+            ValueError.message
         return correct_file
 
     def check_inventory(self):
