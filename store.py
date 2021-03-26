@@ -70,7 +70,7 @@ class Store:
                         elif item_type == "Candy":
                             self.add_to_inventory(factory.create_candy(order))
                         else:
-                            self.add_to_inventory(factory.create_animal(order))
+                            self.add_to_inventory(factory.create_stuffed_animal(order))
         except FileNotFoundError:
             print("File name not found")
         return correct_file

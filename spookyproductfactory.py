@@ -20,4 +20,4 @@ class SpookyProductFactory(ProductFactory):
     def create_stuffed_animal(self, item):
         other_info = item.get_details()
         return Skeleton(other_info['stuffing'], other_info['size'], other_info['fabric'], item.get_name(),
-                        other_info['description'], item.get_product_id())
+                        other_info['description'], item.get_product_id(), other_info['has_glow'])
