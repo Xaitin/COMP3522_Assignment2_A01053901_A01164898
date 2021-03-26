@@ -25,6 +25,6 @@ class OrderProcessor:
                 factory = SpookyProductFactory
 
             details = order.drop(['holiday'], ['order_number'], ['product_id'], ['item'], ['name'])
-            new_order = Order(order['order_number'], order['product_id'], order['item'],
+            new_order = Order(order['order_number'], order['product_id'], order['quantity'], order['item'],
                               order['name'], details, factory)
             self._order_list.append(new_order)

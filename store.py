@@ -44,12 +44,33 @@ class Store:
 
         print("Thank you for using the Cloud9 Superstore Terminal")
 
+    def add_to_inventory(self, param):
+        self._inventory.append(param)
+
     def execute_order_processor(self):
         correct_file = False
         try:
             file_name = input("Please enter the name of the excel file to process (without extension)")
             self._order_list = self._order_processor.read_order_file(file_name + ".xlsx")
             correct_file = True
+            for order in self._order_list:
+                product_id = order.get_product_id()
+                num_in_stock = 0
+                factory = order.factory()
+                item_type = order.get_type()
+                for item in self._inventory:
+                    id_to_check = item.product_id()
+                    if product_id == id_to_check:
+                        num_in_stock += 1
+                qty_to_order = order.get_quantity()
+                if qty_to_order > num_in_stock:
+                    for i in range(100):
+                        if item_type == "Toy":
+                            self.add_to_inventory(factory.create_toy(order))
+                        elif item_type == "Candy":
+                            self.add_to_inventory(factory.create_candy(order))
+                        else:
+                            self.add_to_inventory(factory.create_animal(order))
         except FileNotFoundError:
             print("File name not found")
         return correct_file
@@ -81,5 +102,3 @@ class Store:
             print("Inventory is empty")
         else:
             print(output)
-
-
