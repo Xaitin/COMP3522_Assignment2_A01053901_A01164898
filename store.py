@@ -35,9 +35,7 @@ class Store:
             user_input = int(string_input)
 
             if user_input == 1:
-                executing = True
-                while executing:
-                    executing = self.execute_order_processor()
+                self.execute_order_processor()
             elif user_input == 2:
                 self.check_inventory()
             elif user_input == 3:
@@ -48,7 +46,7 @@ class Store:
         print("Thank you for using the Cloud9 Superstore Terminal")
 
     def add_to_inventory(self, param):
-        self._inventory.append(param)
+        self._inventory.append(param.product_id)
 
     def execute_order_processor(self):
         correct_file = False
@@ -62,31 +60,47 @@ class Store:
                 factory = order.factory()
                 item_type = order.get_type()
                 for item in self._inventory:
-                    id_to_check = item.product_id()
-                    if product_id == id_to_check:
+                    if product_id == item:
                         num_in_stock += 1
                 qty_to_order = int(order.get_quantity())
                 if qty_to_order > num_in_stock:
                     try:
                         for i in range(100):
                             if item_type == "Toy":
-                                self.add_to_inventory(factory.create_toy(order))
+                                toy = factory.create_toy(order)
+                                self.add_to_inventory(toy)
                             elif item_type == "Candy":
-                                self.add_to_inventory(factory.create_candy(order))
+                                candy = factory.create_toy(order)
+                                self.add_to_inventory(candy)
                             else:
-                                self.add_to_inventory(factory.create_stuffed_animal(order))
+                                animal = factory.create_stuffed_animal(order)
+                                self.add_to_inventory(animal)
+                        for i in range(qty_to_order):
+                            if item_type == "Toy":
+                                toy = factory.create_toy(order)
+                                self.remove_from_inventory(toy)
+                            elif item_type == "Candy":
+                                candy = factory.create_candy(order)
+                                self.remove_from_inventory(candy)
+                            else:
+                                animal = factory.create_stuffed_animal(order)
+                                self.remove_from_inventory(animal)
                     except InvalidDataError as e:
-                        self._transaction_list.append(order.get_order_number() + e.message)
-                try:
-                    for i in range(qty_to_order):
-                        if item_type == "Toy":
-                            self.remove_from_inventory(factory.create_toy(order))
-                        elif item_type == "Candy":
-                            self.remove_from_inventory(factory.create_candy(order))
-                        else:
-                            self.remove_from_inventory(factory.create_stuffed_animal(order))
-                except InvalidDataError as e:
-                    self._transaction_list.append(order.get_order_number() + e.message)
+                        self._transaction_list.append(str(order.get_order_number()) + e.message)
+                else:
+                    try:
+                        for i in range(qty_to_order):
+                            if item_type == "Toy":
+                                toy = factory.create_toy(order)
+                                self.remove_from_inventory(toy)
+                            elif item_type == "Candy":
+                                candy = factory.create_candy(order)
+                                self.remove_from_inventory(candy)
+                            else:
+                                animal = factory.create_stuffed_animal(order)
+                                self.remove_from_inventory(animal)
+                    except InvalidDataError as e:
+                        self._transaction_list.append(str(order.get_order_number()) + e.message)
                 name = order.get_name()
                 order_num = order.get_order_number()
                 self._transaction_list.append("{0}, Item {1}, Product ID {2}, Name {3}, Quantity {4}".format(
@@ -101,12 +115,11 @@ class Store:
         list_of_ids = list()
         list_of_counters = list()
         for item in self._inventory:
-            p_id = item.product_id()
-            if p_id not in list_of_ids:
-                list_of_ids.append(p_id)
+            if item not in list_of_ids:
+                list_of_ids.append(item)
                 list_of_counters.append(1)
             else:
-                index_to_increment = list_of_ids.index(p_id)
+                index_to_increment = list_of_ids.index(item)
                 list_of_counters[index_to_increment] += 1
         output = ""
         for i in range(len(list_of_ids)):
@@ -135,4 +148,4 @@ class Store:
         file.close()
 
     def remove_from_inventory(self, param):
-        self._inventory.remove(param)
+        self._inventory.remove(param.product_id)

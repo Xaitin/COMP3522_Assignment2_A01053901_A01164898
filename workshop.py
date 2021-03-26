@@ -32,3 +32,6 @@ class Workshop(Toys):
     @property
     def product_id(self):
         return self._product_id
+
+    def get_self(self):
+        return self

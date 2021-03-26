@@ -15,11 +15,11 @@ class OrderProcessor:
         orders = orders.to_dict(orient='records')
         for order in orders:
             if order['holiday'] == 'Christmas':
-                factory = ChristmasProductFactory
+                factory = ChristmasProductFactory()
             elif order['holiday'] == 'Easter':
-                factory = EasterProductFactory
+                factory = EasterProductFactory()
             else:
-                factory = SpookyProductFactory
+                factory = SpookyProductFactory()
 
             # details = orders.drop(['holiday'], ['order_number'], ['product_id'], ['item'], ['name'])
             details = order.copy()

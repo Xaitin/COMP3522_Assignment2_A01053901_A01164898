@@ -6,8 +6,11 @@ from canes import Canes
 
 
 class ChristmasProductFactory(ProductFactory):
-    @classmethod
-    def create_candy(cls, item):
+
+    def __init__(self):
+        pass
+
+    def create_candy(self, item):
         # Creating Candy Canes for Christmas.
         product_id = item.get_product_id()
         name = item.get_name()
@@ -20,28 +23,30 @@ class ChristmasProductFactory(ProductFactory):
             raise InvalidDataError("Candy Canes are Lactose Free")
         elif has_nuts != "N":
             raise InvalidDataError("Candy Canes are Nut Free")
-        return Canes(has_nuts, has_lactose, name, description, product_id, color)
+        object_to_return = Canes(has_nuts, has_lactose, name, description, product_id, color)
+        return object_to_return
 
-    @classmethod
-    def create_toy(cls, item):
+    def create_toy(self, item):
         # creating Santa's Workshops for Christmas
         product_id = item.get_product_id()
         name = item.get_name()
         other_info = item.get_details()
         description = other_info['description']
-        dimensions = other_info['dimensions']
+        dimensions = str(other_info['dimensions'])
         rooms = other_info['num_rooms']
         formatted = dimensions.split(',')
+        if formatted[0] == 'nan':
+            raise InvalidDataError("Incorrect Dimensions")
         height = formatted[0]
         width = formatted[1]
         min_age = other_info['min_age']
         has_batteries = other_info['has_batteries']
         if has_batteries != "N":
             raise InvalidDataError("Santa's Workshop doesnt need batteries")
-        return Workshop(has_batteries, min_age, name, description, product_id, height, width, rooms)
+        object_to_return = Workshop(has_batteries, min_age, name, description, product_id, height, width, rooms)
+        return object_to_return
 
-    @classmethod
-    def create_stuffed_animal(cls, item):
+    def create_stuffed_animal(self, item):
         # creating Reindeer for Christmas
         product_id = item.get_product_id()
         name = item.get_name()
@@ -57,4 +62,5 @@ class ChristmasProductFactory(ProductFactory):
             raise InvalidDataError("Reindeer Stuffing must be Wool")
         elif glow != "Y":
             raise InvalidDataError("Reindeer have Glow in the Dark Noses")
-        return Reindeer(stuffing, size, fabric, name, description, product_id, glow)
+        object_to_return = Reindeer(stuffing, size, fabric, name, description, product_id, glow)
+        return object_to_return

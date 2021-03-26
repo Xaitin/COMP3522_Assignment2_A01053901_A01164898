@@ -7,8 +7,10 @@ from toffee import Toffee
 
 class SpookyProductFactory(ProductFactory):
 
-    @classmethod
-    def create_candy(cls, item):
+    def __init__(self):
+        pass
+
+    def create_candy(self, item):
         other_info = item.get_details()
         if other_info['has_nuts'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, InvalidDataError - has_nuts can only be Y")
@@ -18,11 +20,12 @@ class SpookyProductFactory(ProductFactory):
         if other_info['variety'] != 'Regular' or other_info['variety'] != 'Sea Salt':
             raise InvalidDataError("Could Not process order data corrupted, "
                                    "InvalidDataError - variety can only be Regular or Sea Salt")
-        return Toffee(other_info['has_nuts'], other_info['has_lactose'], item.get_name(), other_info['description'],
-                      item.get_product_id(), other_info['variety'])
+        object_to_return = Toffee(other_info['has_nuts'], other_info['has_lactose'], item.get_name(),
+                                  other_info['description'],
+                                  item.get_product_id(), other_info['variety'])
+        return object_to_return
 
-    @classmethod
-    def create_toy(cls, item):
+    def create_toy(self, item):
         other_info = item.get_details()
         if other_info['has_batteries'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, "
@@ -30,12 +33,14 @@ class SpookyProductFactory(ProductFactory):
         if other_info['spider_type'] != 'Tarantula' or other_info['spider_type'] != 'Wolf Spider':
             raise InvalidDataError("Could Not process order data corrupted, "
                                    "InvalidDataError - spider_type can only be Tarantula or Wolf")
-        return Spider(other_info['has_batteries'], other_info['min_age'], item.get_name(), other_info['description'],
-                      item.get_product_id(), other_info['speed'], other_info['jump_height'], other_info['has_glow'],
-                      other_info['spider_type'])
+        object_to_return = Spider(other_info['has_batteries'], other_info['min_age'], item.get_name(),
+                                  other_info['description'],
+                                  item.get_product_id(), other_info['speed'], other_info['jump_height'],
+                                  other_info['has_glow'],
+                                  other_info['spider_type'])
+        return object_to_return
 
-    @classmethod
-    def create_stuffed_animal(cls, item):
+    def create_stuffed_animal(self, item):
         other_info = item.get_details()
         if other_info['stuffing'] != 'Polyester Fibrefill':
             raise InvalidDataError("Could Not process order data corrupted, "
@@ -45,5 +50,6 @@ class SpookyProductFactory(ProductFactory):
                                    "InvalidDataError - fabric can only be Acrylic")
         if other_info['has_glow'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, InvalidDataError - has_glow can only be Y")
-        return Skeleton(other_info['stuffing'], other_info['size'], other_info['fabric'], item.get_name(),
-                        other_info['description'], item.get_product_id(), other_info['has_glow'])
+        object_to_return = Skeleton(other_info['stuffing'], other_info['size'], other_info['fabric'], item.get_name(),
+                                    other_info['description'], item.get_product_id(), other_info['has_glow'])
+        return object_to_return

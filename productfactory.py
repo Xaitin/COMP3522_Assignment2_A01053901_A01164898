@@ -3,17 +3,14 @@ from abc import ABC, abstractmethod
 
 class ProductFactory(ABC):
 
-    @classmethod
     @abstractmethod
-    def create_candy(cls, item):
+    def create_candy(self, item):
         pass
 
-    @classmethod
     @abstractmethod
-    def create_toy(cls, item):
+    def create_toy(self, item):
         pass
 
-    @classmethod
     @abstractmethod
-    def create_stuffed_animal(cls, item):
+    def create_stuffed_animal(self, item):
         pass

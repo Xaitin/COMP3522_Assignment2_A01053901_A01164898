@@ -7,8 +7,10 @@ from rbunny import RBunny
 
 class EasterProductFactory(ProductFactory):
 
-    @classmethod
-    def create_candy(cls, item):
+    def __init__(self):
+        pass
+
+    def create_candy(self, item):
         # Creating creme eggs for easter.
         product_id = item.get_product_id()
         name = item.get_name()
@@ -21,10 +23,10 @@ class EasterProductFactory(ProductFactory):
             raise InvalidDataError("Creme Eggs must be Lactose Free")
         elif has_nuts != "Y":
             raise InvalidDataError("Creme Eggs may have nuts")
-        return Eggs(has_nuts, has_lactose, name, description, product_id, pack_size)
+        object_to_return = Eggs(has_nuts, has_lactose, name, description, product_id, pack_size)
+        return object_to_return
 
-    @classmethod
-    def create_toy(cls, item):
+    def create_toy(self, item):
         # creating Robot Bunnies for easter
         product_id = item.get_product_id()
         name = item.get_name()
@@ -38,10 +40,10 @@ class EasterProductFactory(ProductFactory):
             raise InvalidDataError("Robot Bunnies need Batteries")
         if color != "Orange" or color != "Blue" or color != "Pink":
             raise InvalidDataError("Robot Bunnies must be Orange Blue or Pink")
-        return RBunny(has_batteries, min_age, name, description, product_id, num_effects, color)
+        object_to_return = RBunny(has_batteries, min_age, name, description, product_id, num_effects, color)
+        return object_to_return
 
-    @classmethod
-    def create_stuffed_animal(cls, item):
+    def create_stuffed_animal(self, item):
         # creating Easter Bunnies for easter
         product_id = item.get_product_id()
         name = item.get_name()
@@ -55,4 +57,5 @@ class EasterProductFactory(ProductFactory):
             raise InvalidDataError("Easter Bunnies must be made out of Linen")
         if stuffing != "Polyester Fiberfill":
             raise InvalidDataError("Easter Bunnies must be stuffed with Polyester Fiberfill")
-        return EBunny(stuffing, size, fabric, name, description, product_id, color)
+        object_to_return = EBunny(stuffing, size, fabric, name, description, product_id, color)
+        return object_to_return
