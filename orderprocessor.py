@@ -9,9 +9,6 @@ class OrderProcessor:
     def __init__(self):
         self._order_list = []
 
-    def get_orders(self):
-        return self._order_list
-
     def read_order_file(self, file_name):
         orders = pd.read_excel(file_name)
         # print('Excel Sheet to Dict:', orders.to_dict(orient='records'))
@@ -34,3 +31,4 @@ class OrderProcessor:
             new_order = Order(order['order_number'], order['product_id'], order['quantity'], order['item'],
                               order['name'], details, factory)
             self._order_list.append(new_order)
+        return self._order_list
