@@ -7,7 +7,8 @@ from toffee import Toffee
 
 class SpookyProductFactory(ProductFactory):
 
-    def create_candy(self, item):
+    @classmethod
+    def create_candy(cls, item):
         other_info = item.get_details()
         if other_info['has_nuts'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, InvalidDataError - has_nuts can only be Y")
@@ -20,7 +21,8 @@ class SpookyProductFactory(ProductFactory):
         return Toffee(other_info['has_nuts'], other_info['has_lactose'], item.get_name(), other_info['description'],
                       item.get_product_id(), other_info['variety'])
 
-    def create_toy(self, item):
+    @classmethod
+    def create_toy(cls, item):
         other_info = item.get_details()
         if other_info['has_batteries'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, "
@@ -32,7 +34,8 @@ class SpookyProductFactory(ProductFactory):
                       item.get_product_id(), other_info['speed'], other_info['jump_height'], other_info['has_glow'],
                       other_info['spider_type'])
 
-    def create_stuffed_animal(self, item):
+    @classmethod
+    def create_stuffed_animal(cls, item):
         other_info = item.get_details()
         if other_info['stuffing'] != 'Polyester Fibrefill':
             raise InvalidDataError("Could Not process order data corrupted, "

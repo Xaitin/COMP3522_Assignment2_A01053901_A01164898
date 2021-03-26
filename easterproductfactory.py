@@ -7,7 +7,8 @@ from rbunny import RBunny
 
 class EasterProductFactory(ProductFactory):
 
-    def create_candy(self, item):
+    @classmethod
+    def create_candy(cls, item):
         # Creating creme eggs for easter.
         product_id = item.get_product_id()
         name = item.get_name()
@@ -22,7 +23,8 @@ class EasterProductFactory(ProductFactory):
             raise InvalidDataError("Creme Eggs may have nuts")
         return Eggs(has_nuts, has_lactose, name, description, product_id, pack_size)
 
-    def create_toy(self, item):
+    @classmethod
+    def create_toy(cls, item):
         # creating Robot Bunnies for easter
         product_id = item.get_product_id()
         name = item.get_name()
@@ -38,7 +40,8 @@ class EasterProductFactory(ProductFactory):
             raise InvalidDataError("Robot Bunnies must be Orange Blue or Pink")
         return RBunny(has_batteries, min_age, name, description, product_id, num_effects, color)
 
-    def create_stuffed_animal(self, item):
+    @classmethod
+    def create_stuffed_animal(cls, item):
         # creating Easter Bunnies for easter
         product_id = item.get_product_id()
         name = item.get_name()

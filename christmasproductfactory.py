@@ -6,8 +6,8 @@ from canes import Canes
 
 
 class ChristmasProductFactory(ProductFactory):
-
-    def create_candy(self, item):
+    @classmethod
+    def create_candy(cls, item):
         # Creating Candy Canes for Christmas.
         product_id = item.get_product_id()
         name = item.get_name()
@@ -22,7 +22,8 @@ class ChristmasProductFactory(ProductFactory):
             raise InvalidDataError("Candy Canes are Nut Free")
         return Canes(has_nuts, has_lactose, name, description, product_id, color)
 
-    def create_toy(self, item):
+    @classmethod
+    def create_toy(cls, item):
         # creating Santa's Workshops for Christmas
         product_id = item.get_product_id()
         name = item.get_name()
@@ -39,7 +40,8 @@ class ChristmasProductFactory(ProductFactory):
             raise InvalidDataError("Santa's Workshop doesnt need batteries")
         return Workshop(has_batteries, min_age, name, description, product_id, height, width, rooms)
 
-    def create_stuffed_animal(self, item):
+    @classmethod
+    def create_stuffed_animal(cls, item):
         # creating Reindeer for Christmas
         product_id = item.get_product_id()
         name = item.get_name()
