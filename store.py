@@ -77,7 +77,7 @@ class Store:
         except FileNotFoundError:
             print("File name not found")
         except InvalidDataError as e:
-            error = InvalidDataError.get_error_message(e)
+            print(e)
         return correct_file
 
     def check_inventory(self):
