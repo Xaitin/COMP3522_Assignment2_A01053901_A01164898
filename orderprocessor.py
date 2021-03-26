@@ -1,6 +1,6 @@
 import pandas as pd
 from order import Order
-from xmasproductfactory import xmasProductFactory
+from christmasproductfactory import ChristmasProductFactory
 from easterproductfactory import EasterProductFactory
 from spookyproductfactory import SpookyProductFactory
 
@@ -18,7 +18,7 @@ class OrderProcessor:
         orders = orders.to_dict(orient='records')
         for order in orders:
             if order['holiday'] == 'Christmas':
-                factory = XmasProductFactory
+                factory = ChristmasProductFactory
             elif order['holiday'] == 'Easter':
                 factory = EasterProductFactory
             else:

@@ -2,14 +2,14 @@ from stuffedanimals import StuffedAnimals
 
 
 class Reindeer(StuffedAnimals):
-    def __init__(self, stuffing, size, fabric, name, description, p_id):
+    def __init__(self, stuffing, size, fabric, name, description, p_id, has_glow):
         self._stuffing = stuffing
         self._size = size
         self._fabric = fabric
         self._name = name
         self._description = description
         self._product_id = p_id
-        self._glowing_nose = True
+        self._glowing_nose = has_glow
 
     @property
     def stuffing(self):
