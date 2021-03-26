@@ -20,9 +20,11 @@ class ChristmasProductFactory(ProductFactory):
         has_nuts = other_info['has_nuts']
         color = other_info['colour']
         if has_lactose != "N":
-            raise InvalidDataError("Candy Canes are Lactose Free")
+            raise InvalidDataError("Could Not process order data corrupted, InvalidDataError "
+                                   "- Candy Canes are Lactose Free")
         elif has_nuts != "N":
-            raise InvalidDataError("Candy Canes are Nut Free")
+            raise InvalidDataError("Could Not process order data corrupted, InvalidDataError "
+                                   "- Candy Canes are Nut Free")
         object_to_return = Canes(has_nuts, has_lactose, name, description, product_id, color)
         return object_to_return
 
@@ -36,13 +38,15 @@ class ChristmasProductFactory(ProductFactory):
         rooms = other_info['num_rooms']
         formatted = dimensions.split(',')
         if formatted[0] == 'nan':
-            raise InvalidDataError("Incorrect Dimensions")
+            raise InvalidDataError("Could Not process order data corrupted, InvalidDataError "
+                                   "- Incorrect Dimensions")
         height = formatted[0]
         width = formatted[1]
         min_age = other_info['min_age']
         has_batteries = other_info['has_batteries']
         if has_batteries != "N":
-            raise InvalidDataError("Santa's Workshop doesnt need batteries")
+            raise InvalidDataError("Could Not process order data corrupted, InvalidDataError "
+                                   "- Santa's Workshop doesnt need batteries")
         object_to_return = Workshop(has_batteries, min_age, name, description, product_id, height, width, rooms)
         return object_to_return
 
@@ -57,10 +61,13 @@ class ChristmasProductFactory(ProductFactory):
         stuffing = other_info['stuffing']
         glow = other_info['has_glow']
         if fabric != "Cotton":
-            raise InvalidDataError("Reindeer Fabric must be Cotton")
+            raise InvalidDataError("Could Not process order data corrupted, InvalidDataError "
+                                   "- Reindeer Fabric must be Cotton")
         elif stuffing != "Wool":
-            raise InvalidDataError("Reindeer Stuffing must be Wool")
+            raise InvalidDataError("Could Not process order data corrupted, InvalidDataError "
+                                   "- Reindeer Stuffing must be Wool")
         elif glow != "Y":
-            raise InvalidDataError("Reindeer have Glow in the Dark Noses")
+            raise InvalidDataError("Could Not process order data corrupted, InvalidDataError "
+                                   "- Reindeer have Glow in the Dark Noses")
         object_to_return = Reindeer(stuffing, size, fabric, name, description, product_id, glow)
         return object_to_return

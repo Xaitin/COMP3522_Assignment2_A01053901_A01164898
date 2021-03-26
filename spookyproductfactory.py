@@ -17,7 +17,7 @@ class SpookyProductFactory(ProductFactory):
         if other_info['has_lactose'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, "
                                    "InvalidDataError - has_lactose can only be Y")
-        if other_info['variety'] != 'Regular' or other_info['variety'] != 'Sea Salt':
+        if other_info['variety'] != 'Regular' and other_info['variety'] != 'Sea Salt':
             raise InvalidDataError("Could Not process order data corrupted, "
                                    "InvalidDataError - variety can only be Regular or Sea Salt")
         object_to_return = Toffee(other_info['has_nuts'], other_info['has_lactose'], item.get_name(),
@@ -30,7 +30,7 @@ class SpookyProductFactory(ProductFactory):
         if other_info['has_batteries'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, "
                                    "InvalidDataError - has_batteries can only be Y")
-        if other_info['spider_type'] != 'Tarantula' or other_info['spider_type'] != 'Wolf Spider':
+        if other_info['spider_type'] != 'Tarantula' and other_info['spider_type'] != 'Wolf Spider':
             raise InvalidDataError("Could Not process order data corrupted, "
                                    "InvalidDataError - spider_type can only be Tarantula or Wolf")
         object_to_return = Spider(other_info['has_batteries'], other_info['min_age'], item.get_name(),

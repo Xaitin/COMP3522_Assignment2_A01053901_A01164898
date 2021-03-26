@@ -70,7 +70,7 @@ class Store:
                                 toy = factory.create_toy(order)
                                 self.add_to_inventory(toy)
                             elif item_type == "Candy":
-                                candy = factory.create_toy(order)
+                                candy = factory.create_candy(order)
                                 self.add_to_inventory(candy)
                             else:
                                 animal = factory.create_stuffed_animal(order)
