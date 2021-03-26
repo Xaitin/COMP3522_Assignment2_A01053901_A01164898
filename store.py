@@ -1,3 +1,4 @@
+from InvalidDataError import InvalidDataError
 from orderprocessor import OrderProcessor
 from enum import Enum
 from datetime import datetime
@@ -75,8 +76,8 @@ class Store:
                             self.add_to_inventory(factory.create_stuffed_animal(order))
         except FileNotFoundError:
             print("File name not found")
-        except AttributeError:
-            ValueError.message
+        except InvalidDataError as e:
+            error = InvalidDataError.get_error_message(e)
         return correct_file
 
     def check_inventory(self):
