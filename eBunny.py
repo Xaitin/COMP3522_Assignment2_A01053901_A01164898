@@ -1,7 +1,7 @@
 from stuffedanimals import StuffedAnimals
 
 
-class eBunny(StuffedAnimals):
+class EBunny(StuffedAnimals):
     def __init__(self, stuffing, size, fabric, name, description, p_id, color):
         self._stuffing = stuffing
         self._size = size

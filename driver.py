@@ -1,8 +1,8 @@
-from store import Store as S
+from store import Store
 
 
 def main():
-    my_store = S()
+    my_store = Store()
     my_store.display_menu()
 
 

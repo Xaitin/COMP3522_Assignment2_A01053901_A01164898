@@ -11,7 +11,6 @@ class Skeleton(StuffedAnimals):
         self._product_id = p_id
         self._glows = True
 
-
     @property
     def stuffing(self):
         return self._stuffing

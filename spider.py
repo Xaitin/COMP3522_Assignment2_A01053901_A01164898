@@ -2,7 +2,7 @@ from toys import Toys
 
 
 class Spider(Toys):
-    def __init__(self, battery, min_age, name, description, p_id, speed, jump_height, glows, type):
+    def __init__(self, battery, min_age, name, description, p_id, speed, jump_height, glows, spider_type):
         self._is_battery_operated = battery
         self._min_rec_age = min_age
         self._name = name
@@ -11,7 +11,7 @@ class Spider(Toys):
         self._speed = speed
         self._jump_height = jump_height
         self._glows = glows
-        self._type = type
+        self._type = spider_type
 
     @property
     def is_battery_operated(self):

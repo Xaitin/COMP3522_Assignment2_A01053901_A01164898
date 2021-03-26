@@ -32,4 +32,3 @@ class Workshop(Toys):
     @property
     def product_id(self):
         return self._product_id
-

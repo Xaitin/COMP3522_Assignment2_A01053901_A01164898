@@ -1,7 +1,7 @@
 from toys import Toys
 
 
-class rBunny(Toys):
+class RBunny(Toys):
 
     def __init__(self, battery, min_age, name, description, p_id, num_effects, color):
         self._is_battery_operated = battery
@@ -31,4 +31,3 @@ class rBunny(Toys):
     @property
     def product_id(self):
         return self._product_id
-
