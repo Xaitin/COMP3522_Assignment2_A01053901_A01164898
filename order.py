@@ -1,9 +1,9 @@
 class Order:
 
-    def __init__(self, ord_num, prod_id, type, name, details, factory):
+    def __init__(self, ord_num, prod_id, item_type, name, details, factory):
         self._ord_num = ord_num
         self._prod_id = prod_id
-        self._type = type
+        self._type = item_type
         self._name = name
         self._details = details
         self._factory = factory
