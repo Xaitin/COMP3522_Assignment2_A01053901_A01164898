@@ -87,6 +87,11 @@ class Store:
                             self.remove_from_inventory(factory.create_stuffed_animal(order))
                 except InvalidDataError as e:
                     self._transaction_list.append(order.get_order_number() + e.message)
+                name = order.get_name()
+                order_num = order.get_order_number()
+                self._transaction_list.append("{0}, Item {1}, Product ID {2}, Name {3}, Quantity {4}".format(
+                    order_num, item_type, product_id, name, qty_to_order
+                ))
 
         except FileNotFoundError:
             print("File name not found")
