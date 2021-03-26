@@ -14,6 +14,7 @@ class Store:
         self._inventory = list()
         self._order_processor = OrderProcessor()
         self._order_list = None
+        self._transaction_list = list()
 
     def display_menu(self):
 
