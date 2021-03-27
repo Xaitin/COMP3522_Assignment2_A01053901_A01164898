@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 class Stock(Enum):
+    """Enumeration for stock values"""
     OUT_OF_STOCK = 0
     IN_STOCK = 9
     LOW = 10
@@ -12,6 +13,7 @@ class Stock(Enum):
 
 
 class Store:
+    """Store object for running the store"""
     def __init__(self):
         self._inventory = list()
         self._order_processor = OrderProcessor()
@@ -19,7 +21,7 @@ class Store:
         self._transaction_list = list()
 
     def display_menu(self):
-
+        """Displays menu for the store"""
         user_input = None
         while user_input != 3:
             print("\nWelcome to Cloud9 Superstore Terminal")
@@ -46,9 +48,11 @@ class Store:
         print("Thank you for using the Cloud9 Superstore Terminal")
 
     def add_to_inventory(self, param):
+        """Adds items to the store inventory"""
         self._inventory.append(param.product_id)
 
     def execute_order_processor(self):
+        """Executes the order processor"""
         correct_file = False
         try:
             file_name = input("Please enter the name of the excel file to process (without extension)")
@@ -112,6 +116,7 @@ class Store:
         return correct_file
 
     def check_inventory(self):
+        """Checks the inventory of the store"""
         list_of_ids = list()
         list_of_counters = list()
         for item in self._inventory:
@@ -139,6 +144,7 @@ class Store:
             print(output)
 
     def print_transactions_to_file(self):
+        """Prints transaction details to file"""
         timestamp = datetime.today().strftime('%d%m%y_%H%M')
         filename = 'DTR_' + timestamp + '.txt'
         file = open(filename, 'w')
@@ -149,4 +155,5 @@ class Store:
         print(self._transaction_list)
 
     def remove_from_inventory(self, param):
+        """Removes items from inventory"""
         self._inventory.remove(param.product_id)

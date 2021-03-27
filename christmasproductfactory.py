@@ -6,12 +6,13 @@ from canes import Canes
 
 
 class ChristmasProductFactory(ProductFactory):
-
+    """Creates christmas themed items"""
     def __init__(self):
+        """Initializer for the factory"""
         pass
 
     def create_candy(self, item):
-        # Creating Candy Canes for Christmas.
+        """Creating Candy Canes for Christmas."""
         product_id = item.get_product_id()
         name = item.get_name()
         other_info = item.get_details()
@@ -29,7 +30,7 @@ class ChristmasProductFactory(ProductFactory):
         return object_to_return
 
     def create_toy(self, item):
-        # creating Santa's Workshops for Christmas
+        """creating Santa's Workshops for Christmas"""
         product_id = item.get_product_id()
         name = item.get_name()
         other_info = item.get_details()
@@ -51,7 +52,7 @@ class ChristmasProductFactory(ProductFactory):
         return object_to_return
 
     def create_stuffed_animal(self, item):
-        # creating Reindeer for Christmas
+        """creating Reindeer for Christmas"""
         product_id = item.get_product_id()
         name = item.get_name()
         other_info = item.get_details()

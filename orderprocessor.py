@@ -6,10 +6,13 @@ from spookyproductfactory import SpookyProductFactory
 
 
 class OrderProcessor:
+    """Order processor class for reading the excel files"""
     def __init__(self):
+        """Initializer for order processing"""
         self._order_list = []
 
     def read_order_file(self, file_name):
+        """Reading order files"""
         orders = pd.read_excel(file_name)
         # print('Excel Sheet to Dict:', orders.to_dict(orient='records'))
         orders = orders.to_dict(orient='records')

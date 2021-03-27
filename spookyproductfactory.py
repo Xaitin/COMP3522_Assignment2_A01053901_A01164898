@@ -6,11 +6,13 @@ from toffee import Toffee
 
 
 class SpookyProductFactory(ProductFactory):
-
+    """Spooky product factory for creating haloween items"""
     def __init__(self):
+        """Initializer for halloween games"""
         pass
 
     def create_candy(self, item):
+        """Creates candy objects for halloween"""
         other_info = item.get_details()
         if other_info['has_nuts'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, InvalidDataError - has_nuts can only be Y")
@@ -26,6 +28,7 @@ class SpookyProductFactory(ProductFactory):
         return object_to_return
 
     def create_toy(self, item):
+        """Creates toy objects for halloween"""
         other_info = item.get_details()
         if other_info['has_batteries'] != 'Y':
             raise InvalidDataError("Could Not process order data corrupted, "
@@ -41,6 +44,7 @@ class SpookyProductFactory(ProductFactory):
         return object_to_return
 
     def create_stuffed_animal(self, item):
+        """Creates stuffed animals for halloween"""
         other_info = item.get_details()
         if other_info['stuffing'] != 'Polyester Fibrefill':
             raise InvalidDataError("Could Not process order data corrupted, "

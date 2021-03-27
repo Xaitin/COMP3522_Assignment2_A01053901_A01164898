@@ -6,12 +6,13 @@ from rbunny import RBunny
 
 
 class EasterProductFactory(ProductFactory):
-
+    """Factory for creating easter related items"""
     def __init__(self):
+        """Initializer for easter product factories"""
         pass
 
     def create_candy(self, item):
-        # Creating creme eggs for easter.
+        """Creating creme eggs for easter."""
         product_id = item.get_product_id()
         name = item.get_name()
         other_info = item.get_details()
@@ -29,7 +30,7 @@ class EasterProductFactory(ProductFactory):
         return object_to_return
 
     def create_toy(self, item):
-        # creating Robot Bunnies for easter
+        """creating Robot Bunnies for easter"""
         product_id = item.get_product_id()
         name = item.get_name()
         other_info = item.get_details()
@@ -48,7 +49,7 @@ class EasterProductFactory(ProductFactory):
         return object_to_return
 
     def create_stuffed_animal(self, item):
-        # creating Easter Bunnies for easter
+        """creating Easter Bunnies for easter"""
         product_id = item.get_product_id()
         name = item.get_name()
         other_info = item.get_details()
